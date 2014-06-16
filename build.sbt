@@ -4,8 +4,8 @@ name := "reactivemongo-extensions"
 
 lazy val commonSettings = Seq(
   organization := "net.fehmicansaglam",
-  version := "0.10.0.4-SNAPSHOT",
-  scalaVersion  := "2.10.4",
+  version := "0.10.5.akka23-SNAPSHOT",
+  scalaVersion  := "2.11.1",
   scalacOptions := Seq(
     "-unchecked",
     "-deprecation",
@@ -16,6 +16,7 @@ lazy val commonSettings = Seq(
     "-language:implicitConversions",
     "-language:existentials"),
   resolvers ++= Seq(
+    "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/",
     "Typesafe repository releases" at "http://repo.typesafe.com/typesafe/releases/"),
   parallelExecution in Test := true,
   javaOptions in Test ++= Seq("-Xmx512m", "-XX:MaxPermSize=512m"),
