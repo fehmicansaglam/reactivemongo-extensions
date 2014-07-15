@@ -21,9 +21,12 @@ import reactivemongo.api.DefaultDB
 import reactivemongo.extensions.dsl.BsonDsl
 import scala.concurrent.{ Future, Await }
 import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext
+import java.util.concurrent.Executors
 
-class EventBsonDao(_db: DefaultDB)
-    extends BsonDao[Event, String](() => _db, "events")
+class EventBsonDao(_db: DefaultDB) extends {
+  override implicit val ec: ExecutionContext = ExecutionContext.fromExecutorService(Executors.newFixedThreadPool(1))
+} with BsonDao[Event, String](() => _db, "events")
     with BsonDsl {
 
   def findByTitle(title: String): Future[Option[Event]] = {
